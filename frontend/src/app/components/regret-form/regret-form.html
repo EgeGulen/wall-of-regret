@@ -1,0 +1,48 @@
+<form [formGroup]="regretForm" (ngSubmit)="onSubmit()" class="regret-form">
+  <div class="form-group">
+    <label for="content" class="form-label">
+      Your Regret <span class="required">*</span>
+    </label>
+    <textarea
+      id="content"
+      formControlName="content"
+      class="form-control"
+      [class.error]="getContentErrorMessage()"
+      placeholder="Share what you regret..."
+      rows="4">
+    </textarea>
+    <div class="form-footer">
+      <div class="error-message" *ngIf="getContentErrorMessage()">
+        {{ getContentErrorMessage() }}
+      </div>
+      <div class="char-count" [class.warning]="getContentRemainingChars() < 100">
+        {{ getContentRemainingChars() }} characters remaining
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="author" class="form-label">
+      Your Name (Optional)
+    </label>
+    <input
+      type="text"
+      id="author"
+      formControlName="author"
+      class="form-control"
+      [class.error]="getAuthorErrorMessage()"
+      placeholder="Leave blank to post anonymously">
+    <div class="error-message" *ngIf="getAuthorErrorMessage()">
+      {{ getAuthorErrorMessage() }}
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary" [disabled]="regretForm.invalid">
+      {{ isEditMode ? 'Update Regret' : 'Share Regret' }}
+    </button>
+  </div>
+</form>

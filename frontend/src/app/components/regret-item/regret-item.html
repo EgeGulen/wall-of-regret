@@ -1,0 +1,20 @@
+<div class="regret-item">
+  <div class="regret-content">
+    <p class="content">{{ regret.content }}</p>
+    <div class="regret-meta">
+      <span class="author" *ngIf="regret.author">by {{ regret.author }}</span>
+      <span class="date">{{ formatDate(regret.createdAt) }}</span>
+      <span class="updated" *ngIf="regret.createdAt !== regret.updatedAt">
+        (updated {{ formatDate(regret.updatedAt) }})
+      </span>
+    </div>
+  </div>
+  <div class="regret-actions">
+    <button class="edit-btn" (click)="onEdit()" title="Edit regret">
+      ✏️ Edit
+    </button>
+    <button class="delete-btn" (click)="onDelete()" title="Delete regret">
+      🗑️ Delete
+    </button>
+  </div>
+</div>
