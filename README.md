@@ -20,7 +20,7 @@ A modern, full-stack application where users can anonymously post their regrets,
 
 ### 📸 Project Screenshot
 
-*(Buraya uygulamanın ekran görüntüsünü ekleyebilirsin. Örn: `![Project Screenshot](screenshot.png)`)*
+
 ![Project Screenshot](https://i.imgur.com/gK9Q2eK.png) 
 
 ---
