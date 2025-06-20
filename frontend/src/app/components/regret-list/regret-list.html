@@ -1,0 +1,53 @@
+<div class="regret-list-container">
+  <header class="header">
+    <h1>Wall of Regret</h1>
+    <p class="subtitle">Share your regrets anonymously or with your name</p>
+    <button class="add-btn" (click)="toggleAddForm()" [class.active]="showAddForm">
+      {{ showAddForm ? '✕ Cancel' : '+ Add Regret' }}
+    </button>
+  </header>
+
+  <!-- Error message -->
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <!-- Add regret form -->
+  <div class="form-container" *ngIf="showAddForm">
+    <h3>Add New Regret</h3>
+    <app-regret-form 
+      (submit)="onCreateRegret($event)"
+      (cancel)="cancelAdd()">
+    </app-regret-form>
+  </div>
+
+  <!-- Edit regret form -->
+  <div class="form-container" *ngIf="editingRegret">
+    <h3>Edit Regret</h3>
+    <app-regret-form 
+      [initialData]="editingRegret"
+      (submit)="onUpdateRegret($event)"
+      (cancel)="cancelEdit()">
+    </app-regret-form>
+  </div>
+
+  <!-- Loading indicator -->
+  <div class="loading" *ngIf="loading">
+    Loading regrets...
+  </div>
+
+  <!-- Regrets list -->
+  <div class="regrets-list" *ngIf="!loading">
+    <div class="empty-state" *ngIf="regrets.length === 0">
+      <h3>No regrets yet</h3>
+      <p>Be the first to share a regret on the wall.</p>
+    </div>
+    
+    <app-regret-item 
+      *ngFor="let regret of regrets; trackBy: trackByRegretId"
+      [regret]="regret"
+      (edit)="onEditRegret($event)"
+      (delete)="onDeleteRegret($event)">
+    </app-regret-item>
+  </div>
+</div>

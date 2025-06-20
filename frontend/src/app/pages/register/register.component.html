@@ -1,1 +1,45 @@
-<p>register works!</p>
+<div class="auth-container">
+  <div class="auth-box">
+
+    <!-- ===== BİLDİRİM ALANI BAŞLANGICI ===== -->
+    <div *ngIf="notificationMessage"
+         class="notification"
+         [ngClass]="{
+           'success': notificationType === 'success',
+           'error': notificationType === 'error'
+         }">
+      {{ notificationMessage }}
+    </div>
+    <!-- ===== BİLDİRİM ALANI SONU ===== -->
+
+    <h2>Create Account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" placeholder="Choose a username" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Create a password" />
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirm your password" />
+      </div>
+
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading; else loadingSpinner">Register</span>
+        <ng-template #loadingSpinner>
+          <span class="spinner"></span>
+        </ng-template>
+      </button>
+    </form>
+
+    <p class="redirect-link">
+      Already have an account? <a [routerLink]="['/login']">Login here</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,198 @@
+/* Bu dosya, hem Login hem de Register sayfaları için ortak stil kurallarını içerir.
+  Daha modern, animasyonlu ve kullanıcı dostu bir arayüz sağlar.
+*/
+
+/* Temel Renkler için Değişkenler (Değiştirmesi kolay) */
+:root {
+  --primary-color: #6c63ff; /* Canlı bir mor */
+  --primary-color-dark: #574feb;
+  --secondary-color: #7b4e4e;
+  --background-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+  --text-color: #333;
+  --text-color-light: #777;
+  --border-color: #ddd;
+  --success-color: #4CAF50;
+  --error-color: #f44336;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Sayfanın tamamını kaplayan ana konteyner */
+.auth-container {
+  position: relative; /* Dalgaları konumlandırmak için gerekli */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-color: var(--background-color);
+  overflow: hidden; /* Dışarı taşan dalgaları gizle */
+}
+
+/* Formun içinde bulunduğu kutu */
+.auth-box {
+  background: rgb(184, 118, 237);
+  padding: 2.5rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out; /* Giriş animasyonu */
+}
+
+/* Form kutusu için giriş animasyonu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Başlık (Login / Register) */
+.auth-box h2 {
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+/* Form elemanlarını gruplayan yapı */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* "Username", "Password" gibi etiketler */
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+}
+
+/* Yazı giriş alanları */
+.input-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Yazı giriş alanına tıklandığında (focus) */
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+/* Gönderme Butonu */
+.btn-submit {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: var(--primary-color);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px); /* Butonun hafifçe yukarı kalkma efekti */
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+/* Alt kısımdaki yönlendirme linki */
+.redirect-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-color-light);
+}
+
+.redirect-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.redirect-link a:hover {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+}
+/* ===== BİLDİRİM VE SPINNER STİLLERİ ===== */
+
+/* Bildirim kutusunun temel stili */
+.notification {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  animation: fadeInDown 0.5s ease-out;
+  border-left: 5px solid;
+}
+
+/* Başarı bildirimi için yeşil tema */
+.notification.success {
+  background-color: #e8f5e9; /* Açık yeşil arka plan */
+  color: #2e7d32; /* Koyu yeşil yazı */
+  border-color: #4caf50;
+}
+
+/* Hata bildirimi için kırmızı tema */
+.notification.error {
+  background-color: #ffebee; /* Açık kırmızı arka plan */
+  color: #c62828; /* Koyu kırmızı yazı */
+  border-color: #f44336;
+}
+
+/* Bildirim için giriş animasyonu */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buton içindeki yükleme spinner'ı */
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Spinner dönüş animasyonu */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* İşlem sırasında butonu pasif hale getirme */
+.btn-submit:disabled {
+  background-color: var(--primary-color-dark);
+  cursor: not-allowed;
+  opacity: 0.7;
+}

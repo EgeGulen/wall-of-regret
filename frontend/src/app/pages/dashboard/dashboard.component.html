@@ -1,0 +1,77 @@
+<div class="page-container">
+  <!-- Top Header Section -->
+  <header class="page-header">
+    <div class="title">
+      <h1>Wall of Regrets</h1>
+    </div>
+    <div class="user-profile" *ngIf="username">
+      <span class="greeting">Logged in as: <strong class="username">{{ username }}</strong></span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- Main content area, centered -->
+  <main class="content-wrapper">
+    <!-- Form to add or edit a regret -->
+    <div class="form-card">
+      
+      <!-- Status message area for user feedback -->
+      <div class="status-message" *ngIf="statusMessage">
+        {{ statusMessage }}
+      </div>
+
+      <form [formGroup]="regretForm" (ngSubmit)="onSubmit()">
+        <textarea
+          formControlName="content"
+          placeholder="Share what you regret today..."
+          rows="4"
+        ></textarea>
+        
+        <!-- Updated Form Actions with Anonymous Checkbox -->
+        <div class="form-actions">
+          <div class="anonymous-option">
+            <input type="checkbox" id="anonymous-check" formControlName="isAnonymous">
+            <label for="anonymous-check">Post as Anonymous</label>
+          </div>
+          <div class="action-buttons">
+            <button *ngIf="isEditing" type="button" class="btn-cancel" (click)="cancelEdit()">
+              Cancel
+            </button>
+            <button type="submit" class="btn-submit" [disabled]="regretForm.invalid || isLoading">
+              {{ isLoading ? 'Processing...' : (isEditing ? 'Update' : 'Share') }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- List of existing regrets -->
+    <div class="regrets-list" *ngIf="regrets.length > 0; else emptyState">
+      <div class="regret-card" *ngFor="let regret of regrets">
+        <p class="content">{{ regret.content }}</p>
+        <div class="meta">
+          <div class="meta-left">
+            <span class="author">by {{ regret.author || 'Anonymous' }}</span>
+            <span class="location">
+              📍 from {{ regret.location || 'Unknown' }}
+            </span>
+          </div>
+          <div class="meta-right">
+            <span class="timestamp">{{ regret.createdAt | date:'MMM d, y, h:mm a' }}</span>
+          </div>
+        </div>
+        <div class="card-actions">
+            <!-- Add logic here later to show buttons only for the owner -->
+            <button class="btn-edit" (click)="editRegret(regret)">Edit</button>
+            <button class="btn-delete" (click)="deleteRegret(regret.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template to show when there are no regrets -->
+    <ng-template #emptyState>
+      <p class="empty-message">No regrets on the wall yet. Be the first one to share.</p>
+    </ng-template>
+
+  </main>
+</div>

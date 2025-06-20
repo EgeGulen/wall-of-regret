@@ -1,0 +1,281 @@
+:host {
+  --primary-purple: #8b5cf6;
+  --primary-purple-dark: #7c3aed;
+  --dark-gray: #1f2937;
+  --medium-gray: #4b5563;
+  --light-gray-bg: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+  display: block;
+  min-height: 100vh;
+  background-color: var(--light-gray-bg);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.page-header .title h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary-purple);
+  margin: 0;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-profile .greeting {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.user-profile .username {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-logout {
+  background-color: var(--dark-gray);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.btn-logout:hover {
+  background-color: var(--medium-gray);
+}
+
+.content-wrapper {
+  max-width: 768px;
+  width: 100%;
+  margin: 2.5rem auto;
+  padding: 0 1rem;
+}
+
+.form-card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2.5rem;
+}
+
+.form-card textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.form-card textarea:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 2px var(--primary-purple-dark);
+}
+
+/* Updated styles for form actions to include checkbox */
+.form-card .form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.anonymous-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.anonymous-option label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  user-select: none;
+}
+
+.anonymous-option input[type="checkbox"] {
+  cursor: pointer;
+  width: 1.15em;
+  height: 1.15em;
+  accent-color: var(--primary-purple);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-card button {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-submit {
+  background-color: var(--dark-gray);
+  color: white;
+}
+.btn-submit:hover {
+  background-color: var(--medium-gray);
+}
+.btn-submit:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background-color: var(--light-gray-bg);
+  color: var(--dark-gray);
+}
+.btn-cancel:hover {
+  background-color: var(--border-color);
+}
+
+.regrets-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.regret-card {
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.regret-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.regret-card .content {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+/* Styles for the meta section (author, location, timestamp) */
+.regret-card .meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+.meta-left .location {
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+.meta-right {
+  align-self: flex-start;
+  text-align: right;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.card-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  margin-left: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-edit {
+  color: var(--primary-purple);
+}
+.btn-edit:hover {
+  background-color: #f5f3ff;
+}
+
+.btn-delete {
+  color: #ef4444;
+}
+.btn-delete:hover {
+  background-color: #fee2e2;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  border: 2px dashed var(--border-color);
+}
+
+.status-message {
+  text-align: center;
+  padding: 0.75rem;
+  background-color: #eef2ff;
+  color: var(--primary-purple);
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
