@@ -17,4 +17,3 @@ import { Regret } from './regret.entity';
   exports: [RegretService],
 })
 export class RegretModule {}
-

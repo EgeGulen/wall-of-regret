@@ -1,0 +1,44 @@
+<div class="auth-container">
+  <div class="auth-box">
+
+    <!-- ===== BİLDİRİM ALANI BAŞLANGICI ===== -->
+    <div *ngIf="notificationMessage"
+         class="notification"
+         [ngClass]="{
+           'success': notificationType === 'success',
+           'error': notificationType === 'error'
+         }">
+      {{ notificationMessage }}
+    </div>
+    <!-- ===== BİLDİRİM ALANI SONU ===== -->
+
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Username Input Group -->
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" placeholder="Enter your username" />
+      </div>
+
+      <!-- Password Input Group - YAZIM HATASI DÜZELTİLDİ -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" placeholder="Enter your password" />
+      </div>
+
+      <!-- Yükleme animasyonlu buton -->
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        <span *ngIf="!isLoading; else loadingSpinner">Login</span>
+        <ng-template #loadingSpinner>
+          <span class="spinner"></span>
+        </ng-template>
+      </button>
+    </form>
+    
+    <!-- Yönlendirme linki -->
+    <p class="redirect-link">
+      Don't have an account? <a [routerLink]="['/register']">Register here</a>
+    </p>
+  </div>
+</div>

@@ -4,23 +4,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RegretModule } from './regret.module';
 import { Regret } from './regret.entity';
+import { AuthModule } from './auth/auth.module';
+import { User } from './auth/user.entity';
 
-/**
- * Root application module.
- * This module configures the main application including database connection,
- * CORS settings, and imports all feature modules.
- */
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
+      type: 'better-sqlite3',
       database: 'wall-of-regret.db',
-      entities: [Regret],
-      synchronize: true, // Note: In production, use migrations instead
+      entities: [Regret, User],
+      synchronize: true,
     }),
     RegretModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
+
